@@ -1,0 +1,21 @@
+{
+  "name": "testbower",
+  "description": "test",
+  "main": "index.js",
+  "authors": [
+    "lss"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "test"
+  ],
+  "homepage": "src",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html >
+<html lang="en" ng-app="atest" ng-init="format=0;name='李帅帅';user={name:'你大爷',age:'17'};array=[1,20,29,3,4,8]">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <script src="../src/atest.js"></script>
+    <style>
+        table, th , td  {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        table tr:nth-child(odd)	{
+            background-color: #f1f1f1;
+        }
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+
+        .mydiv {
+            transition: all linear 0.5s;
+            background-color: lightblue;
+            height: 100px;
+            width: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+       .ng-hide {
+            height: 0;
+            width: 0;
+            background-color: transparent;
+            top:-200px;
+            left: 200px;
+        }
+        .mydiv.test{
+            background-color: red;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<p>姓名为：<span ng-bind="name+'$'"></span></p>
+<div ng-controller="myctrl">
+    个数：<input type="text" ng-model="num">
+    单价：<input type="text" ng-model="price">
+    总价：{{num*price}}
+    <span>{{lastname}}</span>
+
+    <p>{{thisurl}}</p>
+    <ul>
+        <li ng-repeat="rr in arrays">{{rr.name}}</li>
+    </ul>
+
+    <button ng-click="price=price+1">点我加1</button>
+    <button ng-click="toggle()">点我个数成10</button>
+</div>
+<span ng-bind="user.name"></span>
+<p>{{array[2]}}</p>
+
+<ul>
+    <li ng-repeat="ay in array|orderBy">
+        {{ay}}
+    </li>
+</ul>
+
+<hello></hello>
+
+<form name="myForm">
+    <input type="email" name="uemail" ng-model="text1" required>
+    <span ng-show="myForm.uemail.$error.email">邮箱格式不正确</span>
+    {{myForm.uemail.$valid}}
+    {{myForm.uemail.$dirty}}
+    {{myForm.uemail.$touched}}
+</form>
+
+<input type="text" ng-model="format">
+<span ng-bind="format|myfilter"></span>
+
+<select ng-model="selectedName" ng-options="x for x in array"></select>
+
+
+<div ng-controller="mselect">
+    <select  ng-model="selectedSite">
+        <option ng-repeat="x in sites" value="{{x.url}}">{{x.site}}</option>
+    </select>
+    你选择的是：<p>{{selectedSite}}</p>
+</div>
+
+<div ng-controller="mselect">
+    <table>
+        <tr ng-repeat="x in sites">
+            <td>{{$index+1}}</td>
+            <td ng-if="$even" style="background-color: palevioletred">{{x.site}}</td>
+            <td ng-if="$odd" >{{x.site}}</td>
+            <td ng-if="$odd" style="background-color: #5cb85c">{{x.url}}</td>
+            <td ng-if="$even" >{{x.url}}</td>
+        </tr>
+    </table>
+</div>
+
+
+<div  ng-init="mySwitch=true" ng-show="false">
+
+{{mySwitch}}
+    <button ng-disabled="mySwitch">按钮</button>
+    <input type='checkbox' ng-model="mySwitch">
+</div>
+
+
+
+<h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck2"></h1>
+
+<button ng-click="myclasss='test'">fdasdfaf</button>
+
+<div class="mydiv" ng-hide="myCheck2" ng-class="myclasss"></div>
+
+
+<ul>
+    <li><a href="#/">首页</a></li>
+    <li><a href="#/cp">电脑</a></li>
+    <li><a href="#/pt">打印机</a></li>
+    <li><a href="#/ot">其他</a></li>
+</ul>
+
+<div ng-view>
+
+</div>
+
+</body>
+</html>

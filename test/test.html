@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="atest" ng-init="num=0">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../src/directivetest.js"></script>
+</head>
+<body>
+<div ng-controller="myctrl">
+    <input type="text" ng-model="message">
+    你输入的是：{{message}}
+    <loader howloader="loadData()">
+        加载数据。。
+    </loader>
+</div>
+<div ng-controller="myctrl2">
+    <loader howloader="loadData2()">加载数据2</loader>
+</div>
+<div ng-controller="uctrl">
+    <ul>
+        <li ng-repeat="user in users">
+            {{user.name}}
+        </li>
+    </ul>
+</div>
+
+<div>
+    <input ng-model="num">
+    输入的是：{{num|myfilter}}
+</div>
+</body>
+</html>
